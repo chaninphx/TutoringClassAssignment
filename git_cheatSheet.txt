@@ -19,9 +19,13 @@ Merge Comflict?
 	2. git add and git commit the changes
 
 //------------------------------------------------------------------------------
-NOTE:
-If you commit without -m, use :wq to esc							
+NOTE: 
+If you commit without -m, it prompts you for an multiline message 
+		use :wq to esc							
 
 
-Need more Help? 
+Need More Help? 
 https://youtu.be/0fKg7e37bQE		//Tutorial
+
+More Git Commands:
+https://education.github.com/git-cheat-sheet-education.pdf
