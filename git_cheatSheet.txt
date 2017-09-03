@@ -1,16 +1,27 @@
 In Terminal/Command Prompt
 	cd into repository
-//------------------------------------------------------------
+//------------------------------------------------------------------------------
 STEPS:
 git status							//see repository or file changes
-git add <file name>					//add files to be commited
 
-git status							
+git add <file name>					//add files to be commited
+									//to add everything use: git add .
+
+git status							//do another one to see files are added
 git commit -m "<message/comment>"
 git push  							//sync to github.com
 
 git pull 							//pull down from github.com
 
+//------------------------------------------------------------------------------
+Merge Comflict?
+	1. Fix the conflict, and delete all the helper text
+	2. git add and git commit the changes
 
+//------------------------------------------------------------------------------
 NOTE:
-git add .  							//adds everything you changed
+If you commit without -m, use :wq to esc							
+
+
+Need more Help? 
+https://youtu.be/0fKg7e37bQE		//Tutorial
