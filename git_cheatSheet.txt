@@ -1,0 +1,16 @@
+In Terminal/Command Prompt
+	cd into repository
+//------------------------------------------------------------
+STEPS:
+git status							//see repository or file changes
+git add <file name>					//add files to be commited
+
+git status							
+git commit -m "<message/comment>"
+git push  							//sync to github.com
+
+git pull 							//pull down from github.com
+
+
+NOTE:
+git add .  							//adds everything you changed
