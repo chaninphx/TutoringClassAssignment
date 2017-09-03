@@ -21,7 +21,7 @@ Merge Comflict?
 //------------------------------------------------------------------------------
 NOTE: 
 If you commit without -m, it prompts you for an multiline message 
-		use :wq to esc							
+		To end the message use "esc :wq "						
 
 
 Need More Help? 
