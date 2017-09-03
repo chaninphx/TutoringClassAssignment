@@ -22,7 +22,7 @@ git pull 							//shows you the changes if any
 
 //if there are changes
 git checkout <branch name>	
-git merge <target merge branch>		//fix and git status/add/commit/push		
+git merge <target merge branch>		//fix and git status, add, commit, and push	
 
 //Create a pull request
 	-- go to Github.com
@@ -37,7 +37,7 @@ git merge <target merge branch>		//fix and git status/add/commit/push
  HOW TO RESOLVE MERGE CONFLICT:
 ---------------------------------------------------------------------------------
 	1. Fix the conflict, and delete all the helper text
-	2. git add and git commit the changes
+	2. git add, commit, and push the changes
 
 ---------------------------------------------------------------------------------
  HOW TO MAKE A BRANCH:
