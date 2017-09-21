@@ -86,7 +86,7 @@ public class Companion extends JPanel
         return new Dimension(200, 200);
     }
     private BufferedImage loadImage(String name) {
-        String imgFileName = "resources/"+name+".png";
+        String imgFileName = "/resources/"+name+".png";
         URL url = Universe.class.getResource(imgFileName);
         BufferedImage img = null;
             try {

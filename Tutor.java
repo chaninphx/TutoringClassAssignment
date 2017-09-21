@@ -61,7 +61,7 @@ public class Tutor extends JPanel
 				try {
                                     this.remove(msgPanel);
                                     String file = "P" + number + ".html";  //retrieving file name based on the number passed in the parameter
-                                    fr = new FileReader(new File("resources/" + file));
+                                    fr = new FileReader(new File("/resources/" + file));
                                     JEditorPane htmlViewer = new JEditorPane();  //gets editorpane for html file
                                     htmlViewer.setContentType("text/html");  //sets htmlViewer to read html
                                     htmlViewer.read(fr, "test");
@@ -84,7 +84,7 @@ public class Tutor extends JPanel
 				String file = "P" + number + ".html";
 				//System.out.println("gui/resources/" + file);
 				fr = null;
-				fr = new FileReader(new File("resources/" + file));
+				fr = new FileReader(new File("/resources/" + file));
 				JEditorPane htmlViewer = new JEditorPane();
 				htmlViewer.setContentType("text/html");
 				htmlViewer.read(fr, "test");
