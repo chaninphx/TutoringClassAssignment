@@ -1,14 +1,14 @@
 
-package src;
+//package src;
 
 /**
  * Description: Universe.java. In this program, I had to implement a JFrame and add 4 JPanels into
- * that frame. In addition, I had to add a JSlider at the south side of the frame. 
+ * that frame. In addition, I had to add a JSlider at the south side of the frame.
  *
  * (Assignment number: Recitation 4 Part 1:GUI)
  * Completion time: 20 hours
  *
- * @author Paul Tang 
+ * @author Paul Tang
  * @version 1.0
  */
 

@@ -1,4 +1,4 @@
-package src;
+//package src;
 
 
 import javax.swing.*;
@@ -6,14 +6,14 @@ import java.awt.*;
 import java.io.*;
 /*
 * Description: Tutor.java
-* -load html files for each of the options the user picks in the 
+* -load html files for each of the options the user picks in the
 * Universe.java file
 * (Assignment number: Recitation 4 Part 1:GUI)
 *Completion Time: 18 hours
 * @author Chandler Cotton
 * @version 1.0
 */
-public class Tutor extends JPanel 
+public class Tutor extends JPanel
 {
 	FileReader fr;
 	JScrollPane scrollPane;
@@ -37,7 +37,7 @@ public class Tutor extends JPanel
 		nameLabel.setText("Chandler"); // sets name to chandler if state is 0
                     if (panelNum == 0) {
                         //do nothing if state is already on 0
-                    } 
+                    }
                     else {  //going from scrollPane to msgPanel
                             System.out.println("closed");
                             this.remove(scrollPane);  //switching panels
@@ -51,12 +51,12 @@ public class Tutor extends JPanel
                             }
                             panelNum = number;  //updating the status of the state
                         }
-                } 
-		else 
+                }
+		else
 		{
 			if (panelNum == number) {
 			//do nothing if it is already on the scrollPane
-			} 
+			}
 			else if (panelNum == 0) {
 				try {
                                     this.remove(msgPanel);
@@ -73,11 +73,11 @@ public class Tutor extends JPanel
                                     panelNum = number;
                                     fr.close();
 				} catch (Exception e) {
-					this.errorMessageLabel(); //gets error message if html is 
+					this.errorMessageLabel(); //gets error message if html is
 					e.printStackTrace();
                             }
-			} 	
-			else 
+			}
+			else
 			{
 			try {
 				this.remove(scrollPane);   //does same this except changes from one scrollPane to another instance
@@ -110,8 +110,8 @@ public class Tutor extends JPanel
 			nameLabel.setText("HTML file is not found/working");
 			this.revalidate();
 			this.repaint();
-		} 
-		else 
+		}
+		else
 		{
 			this.remove(scrollPane);
 			this.add(msgPanel);
@@ -120,7 +120,7 @@ public class Tutor extends JPanel
 			panelNum = 0;
 		}
             }
-            
+
         public Dimension getPreferredSize() { //gets dimension size to help format scrollpane
 			return new Dimension(200, 200);
 	}

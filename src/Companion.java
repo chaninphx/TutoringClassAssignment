@@ -1,4 +1,4 @@
-package src;
+//package src;
 
 
 import java.awt.Dimension;
@@ -21,16 +21,16 @@ import javax.swing.JPanel;
 * @version 1.0
 */
 public class Companion extends JPanel
-{   
+{
     JPanel pan = new JPanel();;
     JLabel name = new JLabel("Vivian");
-   
+
     int status= 0;
     BufferedImage happy = loadImage("happy");
     BufferedImage thinking = loadImage("thinking");
     BufferedImage worry = loadImage("worry");
     BufferedImage sorry = loadImage("sorry");
-    
+
     public Companion(){
         this.add(pan);
         pan.add(name);
@@ -42,7 +42,7 @@ public class Companion extends JPanel
     {
         Graphics2D g2 = (Graphics2D) g;
         Dimension size = getSize(); //width -255, height -62
-    
+
         if(status==1){
             g2.drawImage(happy,
                 0, 0, size.width, size.height,
@@ -71,9 +71,9 @@ public class Companion extends JPanel
                 null);
             pan.setVisible(false);
         }
-        else if(status==0){   
+        else if(status==0){
           pan.setVisible(true);
-          
+
         }
     }
 
@@ -81,7 +81,7 @@ public class Companion extends JPanel
         status = state;
         repaint(); //paintComponent
     }
-    
+
     public Dimension getPreferredSize(){
         return new Dimension(200, 200);
     }
