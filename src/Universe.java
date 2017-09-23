@@ -1,17 +1,15 @@
-
-package src;
+package project_git.src;
 
 /**
- * Description: Universe.java. In this program, I had to implement a JFrame and add 4 JPanels into
- * that frame. In addition, I had to add a JSlider at the south side of the frame. 
+ * Description: Universe.java. In this program, I had to implement a JFrame and
+ * add 4 JPanels into that frame. In addition, I had to add a JSlider at the
+ * south side of the frame.
  *
- * (Assignment number: Recitation 4 Part 1:GUI)
- * Completion time: 20 hours
+ * (Assignment number: Recitation 4 Part 1:GUI) Completion time: 20 hours
  *
- * @author Paul Tang 
+ * @author Paul Tang
  * @version 1.0
  */
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -20,19 +18,25 @@ import javax.swing.event.ChangeListener;
 
 public class Universe extends JFrame {
 
-    GridLayout cCotton = new GridLayout(0, 2);
+    GridLayout layout = new GridLayout(0, 2);
     JSlider sliding;
     Companion xPanel = new Companion();
     Tutor yPanel = new Tutor();
     Assessor zPanel = new Assessor();
     JPanel pPanel = new JPanel();
 
-    public Universe(String Paul) {
-        super(Paul);
+    //Labels
+    JLabel viv_label = new JLabel("Vivian");
+    JLabel cha_label = new JLabel("Chandler");
+    JLabel ram_label = new JLabel("Ramy");
+    JLabel pau_label = new JLabel("Paul");
+
+    public Universe() {
+        super("Universe");
         setResizable(true);
 
         final JPanel proj = new JPanel();
-        proj.setLayout(cCotton);
+        proj.setLayout(layout);
         JPanel controls = new JPanel();
 
 //START SLIDER
@@ -46,18 +50,22 @@ public class Universe extends JFrame {
 //I set up the components to the preferred size
         proj.setPreferredSize(new Dimension(600, 600));
 
-        xPanel.add(new JLabel("Vivian"));
+        //xPanel.add(viv_label);
         proj.add(xPanel);
-        yPanel.add(new JLabel("Chandler"));
+        xPanel.add(viv_label);
+        // yPanel.add(new JLabel("Chandler"));
         proj.add(yPanel);
-        zPanel.add(new JLabel("Ramy"));
+        yPanel.add(cha_label);
+        // zPanel.add(new JLabel("Ramy"));
         proj.add(zPanel);
-        pPanel.add(new JLabel("Paul"));
+        zPanel.add(ram_label);
+        //pPanel.add(new JLabel("Paul"));
         proj.add(pPanel);
+        pPanel.add(pau_label);
+        
         this.add(proj, BorderLayout.NORTH);
-        this.add(new JSeparator(),BorderLayout.CENTER);
-        this.add(controls,BorderLayout.CENTER);
-
+        this.add(new JSeparator(), BorderLayout.CENTER);
+        this.add(controls, BorderLayout.CENTER);
 
     }
 
@@ -66,15 +74,27 @@ public class Universe extends JFrame {
         public void stateChanged(ChangeEvent e) {
 //when we slide the slider, we want the label to change to where the slider is at
             JSlider slide = (JSlider) e.getSource();
-            int statusOne = slide.getValue(); //when it hits the tick, you will find the value
-            xPanel.changeState(statusOne);
-            yPanel.changeState(statusOne);
-            zPanel.changeState(statusOne);
+            int status = slide.getValue(); //when it hits the tick, you will find the value
+
+            if (status == 0) {
+                xPanel.add(viv_label);
+                yPanel.add(cha_label);
+                zPanel.add(ram_label);
+                pPanel.setVisible(true);
+            } else {
+                xPanel.remove(viv_label);
+                yPanel.remove(cha_label);
+                zPanel.remove(ram_label);
+                pPanel.setVisible(false);
+            }
+            xPanel.changeState(status);
+            yPanel.changeState(status);
+            zPanel.changeState(status);
         }
     }
 
     public static void main(String[] args) {
-        Universe projTwo = new Universe("Universe");
+        Universe projTwo = new Universe();
         projTwo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         projTwo.pack();//resizes the window to fit contents
         projTwo.setVisible(true); //the window will appear

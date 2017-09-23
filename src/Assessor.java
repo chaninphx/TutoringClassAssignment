@@ -1,4 +1,4 @@
-package src;
+package project_git.src;
 
 import java.awt.event.*;
 import java.awt.*;
