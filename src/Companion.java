@@ -11,6 +11,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
 * Description: Companion.java
@@ -30,6 +33,11 @@ public class Companion extends JPanel
     BufferedImage thinking = loadImage("thinking");
     BufferedImage worry = loadImage("worry");
     BufferedImage sorry = loadImage("sorry");
+
+    int delay = 500;
+
+
+    Timer animation = new Timer(delay, new AnimationListener());
 
     public Companion(){
         this.add(pan);
@@ -86,7 +94,7 @@ public class Companion extends JPanel
         return new Dimension(200, 200);
     }
     private BufferedImage loadImage(String name) {
-        String imgFileName = "/resources/"+name+".png";
+        String imgFileName = "resources/"+name+".png";
         URL url = Universe.class.getResource(imgFileName);
         BufferedImage img = null;
             try {
@@ -94,7 +102,19 @@ public class Companion extends JPanel
             } catch (Exception e) {
             }
         return img;
+
+
+
     }
+
+    private class AnimationListener implements ActionListener
+    {
+		public void actionPerformed(ActionEvent e)
+		{
+			System.out.println("Image File Name" + status);
+		}
+	}
+
 
 
 }
