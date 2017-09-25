@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 /**
 * Description: Companion.java
@@ -25,6 +26,7 @@ import java.awt.event.ActionListener;
 */
 public class Companion extends JPanel
 {
+
     JPanel pan = new JPanel();;
     JLabel name = new JLabel("Vivian");
 
@@ -34,16 +36,28 @@ public class Companion extends JPanel
     BufferedImage worry = loadImage("worry");
     BufferedImage sorry = loadImage("sorry");
 
-    int delay = 500;
+    int picWidth = happy.getWidth(null);
+    int picHeight = happy.getHeight(null);
 
+    int xPoint = 0;
+    int yPoint = 0;
 
-    Timer animation = new Timer(delay, new AnimationListener());
+    int delay = 100;
+
+	Timer animation = new Timer(delay, new AnimationListener());
+
+	int animCount = 0;
+	final int expandMax = 30;
+
 
     public Companion(){
-        this.add(pan);
+		this.add(pan);
         pan.add(name);
         name.setText("<html><h1>Vivian So</h1></html>");
         name.setBounds(0, 20, 200, 50);
+
+        animation.start();
+
         //pan.setVisible(true);
     }
     public void paintComponent(Graphics g)
@@ -51,31 +65,31 @@ public class Companion extends JPanel
         Graphics2D g2 = (Graphics2D) g;
         Dimension size = getSize(); //width -255, height -62
 
+        //System.out.println(happy.getWidth());
+
         if(status==1){
-            g2.drawImage(happy,
-                0, 0, size.width, size.height,
-                0, 0, happy.getWidth(null), happy.getHeight(null),
-                null);
+            g2.drawImage(happy, 0, 0, size.width, size.height,
+            0, 0, picWidth, picHeight, null);
              pan.setVisible(false);
         }
         else if(status==2){
             g2.drawImage(thinking,
                 0, 0, size.width, size.height,
-                0, 0, thinking.getWidth(null), thinking.getHeight(null),
+                0, 0, picWidth, picHeight,
                 null);
              pan.setVisible(false);
         }
         else if(status==3){
             g2.drawImage(worry,
                 0, 0, size.width, size.height,
-                0, 0, worry.getWidth(null), worry.getHeight(null),
+                0, 0, picWidth, picHeight,
                 null);
              pan.setVisible(false);
         }
         else if(status==4){
             g2.drawImage(sorry,
                 0, 0, size.width, size.height,
-                0, 0, sorry.getWidth(null), sorry.getHeight(null),
+                0, 0, picWidth, picHeight,
                 null);
             pan.setVisible(false);
         }
@@ -87,6 +101,7 @@ public class Companion extends JPanel
 
     public void changeState(int state){
         status = state;
+        animCount = 0;
         repaint(); //paintComponent
     }
 
@@ -94,13 +109,15 @@ public class Companion extends JPanel
         return new Dimension(200, 200);
     }
     private BufferedImage loadImage(String name) {
-        String imgFileName = "resources/"+name+".png";
-        URL url = Universe.class.getResource(imgFileName);
+        String imgFileName = "../resources/"+name+".png";
+        //URL url = Universe.class.getResource(imgFileName);
+        File file = new File(imgFileName);
         BufferedImage img = null;
             try {
-                img =  ImageIO.read(url);
+                img =  ImageIO.read(file);
             } catch (Exception e) {
             }
+        //System.out.println(img.toString());
         return img;
 
 
@@ -111,7 +128,23 @@ public class Companion extends JPanel
     {
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("Image File Name" + status);
+			if(animCount < expandMax)
+			{
+				picWidth = picWidth + 5;
+				picHeight = picHeight + 5;
+				animCount++;
+			}
+
+			else
+			{
+				picWidth = happy.getWidth(null);
+    			picHeight = happy.getHeight(null);
+    			animCount = 0;
+			}
+
+			//System.out.println(picHeight);
+
+			repaint();
 		}
 	}
 
