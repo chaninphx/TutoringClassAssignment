@@ -38,25 +38,29 @@ public class Tutor extends JPanel
 	}
 
 	public void changeState(int number) {
-		if (number == 0) {
-		nameLabel.setText("Chandler"); // sets name to chandler if state is 0
-                    if (panelNum == 0) {
-                        //do nothing if state is already on 0
-                    }
-                    else {  //going from scrollPane to msgPanel
-                            this.add(msgPanel);
-                            //System.out.println("closed");
-                            this.remove(scrollPane);  //switching panels
-                            this.revalidate();
-                            this.repaint();
-                            try {
-                                    fr.close();
-                            } catch (Exception e) {
-                            e.printStackTrace();
-                            }
-                            panelNum = number;  //updating the status of the state
-                        }
+		if (number == 0) 
+		{
+			nameLabel.setText("Chandler"); // sets name to chandler if state is 0
+            if (panelNum == 0) 
+            {
+                //do nothing if state is already on 0
+            }
+                    
+            else 
+            {  //going from scrollPane to msgPanel
+                this.add(msgPanel);
+                //System.out.println("closed");
+                this.remove(scrollPane);  //switching panels
+                this.revalidate();
+                this.repaint();
+                try {
+                       fr.close();
+                } catch (Exception e) {
+                     e.printStackTrace();
                 }
+                     panelNum = number;  //updating the status of the state
+            }
+        }
 		else
 		{
 			if (panelNum == number) {
@@ -66,9 +70,18 @@ public class Tutor extends JPanel
 				try {
                                     this.remove(msgPanel);
                                     String file = "P" + number + ".html";  //retrieving file name based on the number passed in the parameter
+                                    fr = null;
+                                    scrollPane = null;
+                                    String dir = System.getProperty("user.dir");
+                                    dir = dir.substring(0, dir.length()-3) + "resources";
+                                    System.out.println(dir);
+									
 
-                                    URL url = getClass().getResource("../resources/"+file);
-                                    fr = new FileReader(new File(url.toURI()));
+                                    System.out.println(file);
+                                    //URL url = getClass().getResource(file);
+                                    //System.out.println(url.toString());
+                                    fr = new FileReader(new File(dir + "/" + file));
+                                    //System.out.println(url.toURI());
 
                                     JEditorPane htmlViewer = new JEditorPane();  //gets editorpane for html file
                                     htmlViewer.setContentType("text/html");  //sets htmlViewer to read html
@@ -94,10 +107,18 @@ public class Tutor extends JPanel
 				String file = "P" + number + ".html";
 				//System.out.println("gui/resources/" + file);
 				fr = null;
+				scrollPane = null;
+                String dir = System.getProperty("user.dir");
+                dir = dir.substring(0, dir.length()-3) + "resources";
+                System.out.println(dir);
+									
 
-				URL url = getClass().getResource("../resources/"+file);
-                                fr = new FileReader(new File(url.toURI()));
-                            	JEditorPane htmlViewer = new JEditorPane();
+                System.out.println(file);
+                //URL url = getClass().getResource(file);
+                //System.out.println(url.toString());
+                fr = new FileReader(new File(dir + "/" + file));
+				
+                JEditorPane htmlViewer = new JEditorPane();
 
 				htmlViewer.setContentType("text/html");
 				htmlViewer.read(fr, "test");
