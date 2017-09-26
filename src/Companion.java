@@ -1,10 +1,13 @@
+
 //package src;
+
 
 
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -25,13 +28,13 @@ import java.io.File;
 * @version 1.0
 */
 public class Companion extends JPanel
-{
+{   
+    int status= 0;
 
     JPanel pan = new JPanel();;
     JLabel name = new JLabel("Vivian");
-
-    int status= 0;
-    BufferedImage happy = loadImage("happy");
+  
+    BufferedImage happy =loadImage("happy");
     BufferedImage thinking = loadImage("thinking");
     BufferedImage worry = loadImage("worry");
     BufferedImage sorry = loadImage("sorry");
@@ -54,11 +57,13 @@ public class Companion extends JPanel
 		this.add(pan);
         pan.add(name);
         name.setText("<html><h1>Vivian So</h1></html>");
-        name.setBounds(0, 20, 200, 50);
 
         animation.start();
 
         //pan.setVisible(true);
+
+       // name.setBounds(0, 20, 200, 50);
+
     }
     public void paintComponent(Graphics g)
     {
@@ -68,11 +73,14 @@ public class Companion extends JPanel
         //System.out.println(happy.getWidth());
 
         if(status==1){
+
             g2.drawImage(happy, 0, 0, size.width, size.height,
             0, 0, picWidth, picHeight, null);
+
              pan.setVisible(false);
         }
         else if(status==2){
+           // thinking = loadImage("thinking");
             g2.drawImage(thinking,
                 0, 0, size.width, size.height,
                 0, 0, picWidth, picHeight,
@@ -80,6 +88,7 @@ public class Companion extends JPanel
              pan.setVisible(false);
         }
         else if(status==3){
+            //worry = loadImage("worry");
             g2.drawImage(worry,
                 0, 0, size.width, size.height,
                 0, 0, picWidth, picHeight,
@@ -87,10 +96,12 @@ public class Companion extends JPanel
              pan.setVisible(false);
         }
         else if(status==4){
+            //sorry = loadImage("sorry");
             g2.drawImage(sorry,
                 0, 0, size.width, size.height,
                 0, 0, picWidth, picHeight,
                 null);
+
             pan.setVisible(false);
         }
         else if(status==0){
@@ -112,10 +123,15 @@ public class Companion extends JPanel
         String imgFileName = "../resources/"+name+".png";
         //URL url = Universe.class.getResource(imgFileName);
         File file = new File(imgFileName);
-        BufferedImage img = null;
+
+        //URL url = Universe.class.getResource(imgFileName);
+       // URL url = getClass().getResource(imgFileName);
+        //BufferedImage img = null;
             try {
                 img =  ImageIO.read(file);
             } catch (Exception e) {
+               e.printStackTrace();
+               System.out.println("Image not found");
             }
         //System.out.println(img.toString());
         return img;

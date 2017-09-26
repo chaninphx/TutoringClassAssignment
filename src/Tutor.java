@@ -1,9 +1,12 @@
+
 //package src;
+
 
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import java.net.URL;
 /*
 * Description: Tutor.java
 * -load html files for each of the options the user picks in the
@@ -30,6 +33,8 @@ public class Tutor extends JPanel
 		msgPanel.add(nameLabel);
 		this.add(msgPanel);     //adds message pane to panel
 		this.setVisible(true);
+                
+                
 	}
 
 	public void changeState(int number) {
@@ -39,9 +44,9 @@ public class Tutor extends JPanel
                         //do nothing if state is already on 0
                     }
                     else {  //going from scrollPane to msgPanel
-                            System.out.println("closed");
-                            this.remove(scrollPane);  //switching panels
                             this.add(msgPanel);
+                            //System.out.println("closed");
+                            this.remove(scrollPane);  //switching panels
                             this.revalidate();
                             this.repaint();
                             try {
@@ -61,7 +66,10 @@ public class Tutor extends JPanel
 				try {
                                     this.remove(msgPanel);
                                     String file = "P" + number + ".html";  //retrieving file name based on the number passed in the parameter
-                                    fr = new FileReader(new File("../resources/" + file));
+
+                                    URL url = getClass().getResource("../resources/"+file);
+                                    fr = new FileReader(new File(url.toURI()));
+
                                     JEditorPane htmlViewer = new JEditorPane();  //gets editorpane for html file
                                     htmlViewer.setContentType("text/html");  //sets htmlViewer to read html
                                     htmlViewer.read(fr, "test");
@@ -75,8 +83,10 @@ public class Tutor extends JPanel
 				} catch (Exception e) {
 					this.errorMessageLabel(); //gets error message if html is
 					e.printStackTrace();
+
                             }
 			}
+
 			else
 			{
 			try {
@@ -84,8 +94,11 @@ public class Tutor extends JPanel
 				String file = "P" + number + ".html";
 				//System.out.println("gui/resources/" + file);
 				fr = null;
-				fr = new FileReader(new File("../resources/" + file));
-				JEditorPane htmlViewer = new JEditorPane();
+
+				URL url = getClass().getResource("../resources/"+file);
+                                fr = new FileReader(new File(url.toURI()));
+                            	JEditorPane htmlViewer = new JEditorPane();
+
 				htmlViewer.setContentType("text/html");
 				htmlViewer.read(fr, "test");
 				scrollPane = null;
