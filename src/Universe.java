@@ -1,5 +1,3 @@
-package project_git.src;
-
 
 
 //package src;

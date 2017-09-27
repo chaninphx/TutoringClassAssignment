@@ -1,7 +1,3 @@
-package project_git.src;
-
-
-
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -61,27 +57,19 @@ public class Companion extends JPanel
 		this.add(pan);
         pan.add(name);
         name.setText("<html><h1>Vivian So</h1></html>");
-
         animation.start();
-
-        //pan.setVisible(true);
-
-       // name.setBounds(0, 20, 200, 50);
-
     }
     public void paintComponent(Graphics g)
     {
         Graphics2D g2 = (Graphics2D) g;
         Dimension size = getSize(); //width -255, height -62
 
-        //System.out.println(happy.getWidth());
-
         if(status==1){
 
-            g2.drawImage(happy, 0, 0, size.width, size.height,
-            0, 0, picWidth, picHeight, null);
-
-             pan.setVisible(false);
+            g2.drawImage(happy,
+                0, 0, size.width, size.height,
+                0, 0, picWidth, picHeight, null);
+                pan.setVisible(false);
         }
         else if(status==2){
            // thinking = loadImage("thinking");
@@ -124,24 +112,15 @@ public class Companion extends JPanel
         return new Dimension(200, 200);
     }
     private BufferedImage loadImage(String name) {
-        String imgFileName = "../resources/"+name+".png";
-        URL url = getClass().getResource(imgFileName);
-        
-       // File file = new File(imgFileName);
-
-        BufferedImage img = null;
-       
-       // ImageIO.write(img, "png",new File(imgFileName));
-
+       String imgFileName = "../resources/"+name+".png";
+       File file = new File(imgFileName);
+       BufferedImage img = null;
             try {
-                img =  ImageIO.read(url);
-                
-                
+                img =  ImageIO.read(file);
             } catch (Exception e) {
                e.printStackTrace();
                System.out.println("Image not found");
             }
-        //System.out.println(img.toString());
         return img;
 
     }
@@ -165,9 +144,6 @@ public class Companion extends JPanel
                                 picHeight = happy.getHeight(null);
                                 animCount = 0;
 			}
-
-			//System.out.println(picHeight);
-
 			repaint();
 		}
 	}
