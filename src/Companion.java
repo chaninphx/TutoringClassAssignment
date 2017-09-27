@@ -1,7 +1,3 @@
-package project_git.src;
-
-
-
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -125,16 +121,16 @@ public class Companion extends JPanel
     }
     private BufferedImage loadImage(String name) {
         String imgFileName = "../resources/"+name+".png";
-        URL url = getClass().getResource(imgFileName);
+       // URL url = getClass().getResource(imgFileName);
         
-       // File file = new File(imgFileName);
+       File file = new File(imgFileName);
 
         BufferedImage img = null;
        
        // ImageIO.write(img, "png",new File(imgFileName));
 
             try {
-                img =  ImageIO.read(url);
+                img =  ImageIO.read(file);
                 
                 
             } catch (Exception e) {
