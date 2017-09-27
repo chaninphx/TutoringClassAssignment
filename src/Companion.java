@@ -17,6 +17,13 @@ import java.io.File;
 
 /**
 * Description: Companion.java
+*      -Avater is animated 
+* (Assignment number: Recitation 4 Part 2: Animations)
+* Completion time: 28h 
+* @author Vivian So, Chandler Cotton
+* @version 1.0
+*
+* Description: Companion.java
 *      -Renders the avatar into the JPanel in Universe.java
 * (Assignment number: Recitation 4 Part 1:GUI)
 * Completion time: 13h 48m
