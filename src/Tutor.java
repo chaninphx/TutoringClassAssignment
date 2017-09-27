@@ -66,6 +66,10 @@ public class Tutor extends JPanel
                                     String file = "P" + number + ".html";  //retrieving file name based on the number passed in the parameter
                                     URL url = getClass().getResource("../resources/"+file);
                                     fr = new FileReader(new File(url.toURI()));
+
+//                                  File file2 = new File("../resources/" +file);
+//                                  fr = new FileReader(file2); 
+                                             
                                     JEditorPane htmlViewer = new JEditorPane();  //gets editorpane for html file
                                     htmlViewer.setContentType("text/html");  //sets htmlViewer to read html
                                     htmlViewer.read(fr, "test");
@@ -87,10 +91,16 @@ public class Tutor extends JPanel
 			try {
 				this.remove(scrollPane);   //does same this except changes from one scrollPane to another instance
 				String file = "P" + number + ".html";
-				//System.out.println("gui/resources/" + file);
 				fr = null;
+                                
+                                //works for MacOS
 				URL url = getClass().getResource("../resources/"+file);
-                                fr = new FileReader(new File(url.toURI()));
+                                 fr = new FileReader(new File(url.toURI()));
+                                  
+                                //works for windows
+//                                File file1 = new File("../resources/" +file);
+//                               fr = new FileReader(file1); 
+                               
                             	JEditorPane htmlViewer = new JEditorPane();
 				htmlViewer.setContentType("text/html");
 				htmlViewer.read(fr, "test");
