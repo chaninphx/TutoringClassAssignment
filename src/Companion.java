@@ -33,11 +33,15 @@ public class Companion extends JPanel
 
     JPanel pan = new JPanel();;
     JLabel name = new JLabel("Vivian");
+
   
     BufferedImage happy =loadImage("happy");
     BufferedImage thinking = loadImage("thinking");
     BufferedImage worry = loadImage("worry");
     BufferedImage sorry = loadImage("sorry");
+
+    final int defWid = happy.getWidth(null);
+    final int defHeight = happy.getWidth(null);
 
     int picWidth = happy.getWidth(null);
     int picHeight = happy.getHeight(null);
@@ -112,7 +116,7 @@ public class Companion extends JPanel
 
     public void changeState(int state){
         status = state;
-        animCount = 0;
+        animCount = expandMax + 1;  //get it to reset to beginning
         repaint(); //paintComponent
     }
 
@@ -126,7 +130,7 @@ public class Companion extends JPanel
 
         //URL url = Universe.class.getResource(imgFileName);
        // URL url = getClass().getResource(imgFileName);
-        //BufferedImage img = null;
+        BufferedImage img = null;
             try {
                 img =  ImageIO.read(file);
             } catch (Exception e) {
@@ -144,7 +148,8 @@ public class Companion extends JPanel
     {
 		public void actionPerformed(ActionEvent e)
 		{
-			if(animCount < expandMax)
+			
+            if(animCount < expandMax)
 			{
 				picWidth = picWidth + 5;
 				picHeight = picHeight + 5;
