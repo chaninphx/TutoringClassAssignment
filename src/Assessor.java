@@ -1,4 +1,6 @@
-package project_git.src;
+
+//package src;
+
 
 import java.awt.event.*;
 import java.awt.*;
@@ -10,7 +12,7 @@ import javax.swing.*;
  * For state 0 it will only show the author's name (my name), State 1= will show the ComboBox
  * State 3 will show the checkBox and state 4 will show textfield.
  *
- * (Assignment number: Recitation 4 Part 1:GUI) 
+ * (Assignment number: Recitation 4 Part 1:GUI)
  * Completion time: 18 hrs
  *
  * @author Ramy Dagdoni

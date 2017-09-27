@@ -1,4 +1,6 @@
+
 package project_git.src;
+
 
 
 import javax.swing.*;
@@ -7,14 +9,14 @@ import java.io.*;
 import java.net.URL;
 /*
 * Description: Tutor.java
-* -load html files for each of the options the user picks in the 
+* -load html files for each of the options the user picks in the
 * Universe.java file
 * (Assignment number: Recitation 4 Part 1:GUI)
 *Completion Time: 18 hours
 * @author Chandler Cotton
 * @version 1.0
 */
-public class Tutor extends JPanel 
+public class Tutor extends JPanel
 {
 	FileReader fr;
 	JScrollPane scrollPane;
@@ -36,40 +38,58 @@ public class Tutor extends JPanel
 	}
 
 	public void changeState(int number) {
-		if (number == 0) {
-		nameLabel.setText("Chandler"); // sets name to chandler if state is 0
-                    if (panelNum == 0) {
-                        //do nothing if state is already on 0
-                    } 
-                    else {  //going from scrollPane to msgPanel
-                            this.add(msgPanel);
-                            //System.out.println("closed");
-                            this.remove(scrollPane);  //switching panels
-                            this.revalidate();
-                            this.repaint();
-                            try {
-                                    fr.close();
-                            } catch (Exception e) {
-                            e.printStackTrace();
-                            }
-                            panelNum = number;  //updating the status of the state
-                        }
-                } 
-		else 
+		if (number == 0) 
+		{
+			nameLabel.setText("Chandler"); // sets name to chandler if state is 0
+            if (panelNum == 0) 
+            {
+                //do nothing if state is already on 0
+            }
+                    
+            else 
+            {  //going from scrollPane to msgPanel
+                this.add(msgPanel);
+                //System.out.println("closed");
+                this.remove(scrollPane);  //switching panels
+                this.revalidate();
+                this.repaint();
+                try {
+                       fr.close();
+                } catch (Exception e) {
+                     e.printStackTrace();
+                }
+                     panelNum = number;  //updating the status of the state
+            }
+        }
+		else
 		{
 			if (panelNum == number) {
 			//do nothing if it is already on the scrollPane
-			} 
+			}
 			else if (panelNum == 0) {
 				try {
                                     this.remove(msgPanel);
                                     String file = "P" + number + ".html";  //retrieving file name based on the number passed in the parameter
-                                    URL url = getClass().getResource("../resources/"+file);
-                                    fr = new FileReader(new File(url.toURI()));
 
+                                    //vivian 
+                                  // URL url = getClass().getResource("../resources/"+file);
+                                   //fr = new FileReader(new File(url.toURI()));
 //                                  File file2 = new File("../resources/" +file);
 //                                  fr = new FileReader(file2); 
-                                             
+                    
+                                    fr = null;
+                                    scrollPane = null;
+                                    String dir = System.getProperty("user.dir");
+                                    dir = dir.substring(0, dir.length()-3) + "resources";
+                                    System.out.println(dir);
+									
+
+                                    System.out.println(file);
+                                    //URL url = getClass().getResource(file);
+                                    //System.out.println(url.toString());
+                                    fr = new FileReader(new File(dir + "/" + file));
+                                    //System.out.println(url.toURI());
+
                                     JEditorPane htmlViewer = new JEditorPane();  //gets editorpane for html file
                                     htmlViewer.setContentType("text/html");  //sets htmlViewer to read html
                                     htmlViewer.read(fr, "test");
@@ -81,27 +101,43 @@ public class Tutor extends JPanel
                                     panelNum = number;
                                     fr.close();
 				} catch (Exception e) {
-					this.errorMessageLabel(); //gets error message if html is 
+					this.errorMessageLabel(); //gets error message if html is
 					e.printStackTrace();
-                                }
-                                
-			} 	
-			else 
+
+                            }
+			}
+
+			else
 			{
 			try {
 				this.remove(scrollPane);   //does same this except changes from one scrollPane to another instance
 				String file = "P" + number + ".html";
 				fr = null;
-                                
+
+                                //vivian
                                 //works for MacOS
-				URL url = getClass().getResource("../resources/"+file);
-                                 fr = new FileReader(new File(url.toURI()));
+				//URL url = getClass().getResource("../resources/"+file);
+                               //  fr = new FileReader(new File(url.toURI()));
                                   
                                 //works for windows
 //                                File file1 = new File("../resources/" +file);
 //                               fr = new FileReader(file1); 
                                
-                            	JEditorPane htmlViewer = new JEditorPane();
+
+				scrollPane = null;
+                String dir = System.getProperty("user.dir");
+                dir = dir.substring(0, dir.length()-3) + "resources";
+                System.out.println(dir);
+									
+
+                System.out.println(file);
+                //URL url = getClass().getResource(file);
+                //System.out.println(url.toString());
+                fr = new FileReader(new File(dir + "/" + file));
+				
+                JEditorPane htmlViewer = new JEditorPane();
+
+
 				htmlViewer.setContentType("text/html");
 				htmlViewer.read(fr, "test");
 				scrollPane = null;
@@ -126,8 +162,8 @@ public class Tutor extends JPanel
 			nameLabel.setText("HTML file is not found/working");
 			this.revalidate();
 			this.repaint();
-		} 
-		else 
+		}
+		else
 		{
 			this.remove(scrollPane);
 			this.add(msgPanel);
@@ -136,7 +172,7 @@ public class Tutor extends JPanel
 			panelNum = 0;
 		}
             }
-            
+
         public Dimension getPreferredSize() { //gets dimension size to help format scrollpane
 			return new Dimension(200, 200);
 	}
