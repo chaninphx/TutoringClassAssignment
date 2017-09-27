@@ -1,8 +1,4 @@
 
-package project_git.src;
-
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
