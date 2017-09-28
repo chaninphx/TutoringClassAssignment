@@ -37,26 +37,27 @@ public class Companion extends JPanel
     JPanel pan = new JPanel();;
     JLabel name = new JLabel("Vivian");
 
-  
+    //loading images
     BufferedImage happy =loadImage("happy");
     BufferedImage thinking = loadImage("thinking");
     BufferedImage worry = loadImage("worry");
     BufferedImage sorry = loadImage("sorry");
 
+    //default start width and height
     final int defWid = happy.getWidth(null);
     final int defHeight = happy.getWidth(null);
 
+    //variable that changes values for animation
     int picWidth = happy.getWidth(null);
     int picHeight = happy.getHeight(null);
 
-    int xPoint = 0;
-    int yPoint = 0;
 
     int delay = 100;
 
-	Timer animation = new Timer(delay, new AnimationListener());
+	Thread animation = new AnimationListener();
 
-	int animCount = 0;
+	//only repaints 30 times before resetting
+    int animCount = 0;
 	final int expandMax = 30;
 
 
@@ -136,25 +137,33 @@ public class Companion extends JPanel
     }
 
 
-    private class AnimationListener implements ActionListener
+    private class AnimationListener extends Thread
     {
-		public void actionPerformed(ActionEvent e)
+		public void run()
 		{
-			
-            if(animCount < expandMax)
-			{
-				picWidth = picWidth + 5;
-				picHeight = picHeight + 5;
-				animCount++;
-			}
+    		while(true)
+            {    
+            	try
+                {
+                    Thread.sleep(delay);
+                }
+                catch(Exception e){}
 
-			else
-			{
-				picWidth = happy.getWidth(null);
-                                picHeight = happy.getHeight(null);
-                                animCount = 0;
-			}
-			repaint();
+                if(animCount < expandMax)
+    			{
+    				picWidth = picWidth + 5;
+    				picHeight = picHeight + 5;
+    				animCount++;
+    			}
+
+    			else
+    			{
+    				picWidth = happy.getWidth(null);
+                    picHeight = happy.getHeight(null);
+                    animCount = 0;
+    			}
+    			repaint();
+            }
 		}
 	}
 
